@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Tourist Attraction Search</title>
+    <script>
+        async function getTouristAttraction() {
+            const name = document.getElementById('name').value;
+
+            if (name === '') {
+                alert('Please enter a tourist attraction name.');
+                return;
+            }
+
+            const response = await fetch(`/api/tourist-attraction/${name}`, {
+                method: 'GET'
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('result').innerHTML = `
+                    <h3>Tourist Attraction Details:</h3>
+                    <p><strong>Name:</strong> ${data.name}</p>
+                    <p><strong>Description:</strong> ${data.description}</p>
+                `;
+            } else {
+                document.getElementById('result').innerHTML = `
+                    <p style="color:red;">Tourist attraction not found!</p>
+                `;
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Search Tourist Attraction</h1>
+<label for="name">Enter the name of the tourist attraction:</label>
+<input type="text" id="name" placeholder="Enter name" />
+<button onclick="getTouristAttraction()">Search</button>
+
+<div id="result"></div>
+</body>
+</html>

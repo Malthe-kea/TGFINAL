@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Guide</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+<nav>
+    <a href="getAttractionByName.html">Get Attraction by Name</a>
+    <a href="attractions.html">Get A List Of Attractions</a>
+    <a href="#update-attraction">Update Attraction - TBD</a>
+    <a href="#delete-attraction">Delete Attraction - TBD</a>
+</nav>
+
+
+<section id="get-attractions">
+    <h2>Get All Tourist Attractions</h2>
+    <p>This method retrieves a list of all tourist attractions.</p>
+    <ol>
+        <li>Make a GET request to the <strong>/attractions</strong> endpoint.</li>
+        <li>Returns a JSON array with the list of attractions.</li>
+        <li>Responds with HTTP Status 200 (OK).</li>
+    </ol>
+    <img src="create_icon_246449.png" alt="Tourist Attractions">
+</section>
+
+<section id="get-by-name">
+    <h2>Get Tourist Attraction by Name</h2>
+    <p>This method retrieves information for a specific tourist attraction by name.</p>
+    <ul>
+        <li>Make a GET request to <strong>/attractions/{name}</strong>.</li>
+        <li>Returns a JSON object with the attraction details.</li>
+        <li>Responds with HTTP Status 200 (OK).</li>
+    </ul>
+    <img src="create_icon_246449.png" alt="Tourist Attraction by Name">
+</section>
+
+<section id="add-attraction">
+    <h2>Add New Tourist Attraction</h2>
+    <p>This method allows the addition of a new tourist attraction.</p>
+    <ul>
+        <li>Make a POST request to <strong>/attractions/add</strong> with the attraction data in the request body.</li>
+        <li>Returns the created attraction object in the response.</li>
+        <li>Responds with HTTP Status 201 (Created).</li>
+    </ul>
+    <img src="create_icon_246449.png" alt="Add Tourist Attraction">
+</section>
+
+<section id="update-attraction">
+    <h2>Update Tourist Attraction</h2>
+    <p>This method updates an existing tourist attraction based on its name.</p>
+    <ol>
+        <li>Make a POST request to <strong>/attractions/update</strong> with the attraction's name and updated details in the request body.</li>
+        <li>Returns the updated attraction object in the response.</li>
+        <li>Responds with HTTP Status 200 (OK).</li>
+    </ol>
+    <img src="create_icon_246449.png" alt="Update Tourist Attraction">
+</section>
+
+<section id="delete-attraction">
+    <h2>Delete Tourist Attraction</h2>
+    <p>This method deletes a tourist attraction by its name.</p>
+    <ul>
+        <li>Make a POST request to <strong>/attractions/delete/{name}</strong>.</li>
+        <li>Returns the deleted attraction object.</li>
+        <li>Responds with HTTP Status 200 (OK).</li>
+    </ul>
+    <img src="create_icon_246449.png" alt="Delete Tourist Attraction">
+</section>
+
+<footer>
+    <p>&copy; 2024 Tourist Guide API</p>
+</footer>
+
+</body>
+</html>

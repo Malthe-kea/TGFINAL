@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourist Attractions</title>
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<nav>
+  <a href="Index.html">Home</a>
+  <a href="getAttractionByName.html">Get Attraction by Name</a>
+  <a href="attractions.html">Get A List Of Attractions</a>
+  <a href="#update-attraction">Update Attraction - TBD</a>
+  <a href="#delete-attraction">Delete Attraction - TBD</a>
+</nav>
+
+<header>
+  <h1>Tourist Attractions</h1>
+</header>
+
+<main>
+  <section id="attractions-list">
+    <h2>Explore the Attractions</h2>
+    <div class="attractions-container" id="attraction-items">
+      <!-- Attraction cards will be dynamically added here -->
+    </div>
+  </section>
+  <button> <a href="Index.html"> back </a>
+  </button>
+</main>
+
+<footer>
+  <p>© 2024 Tourist Guide API</p>
+</footer>
+
+<script>
+  async function fetchTouristAttractions() {
+    try {
+      const response = await fetch('http://localhost:8080/attractions'); // API URL for fetching attractions
+      if (!response.ok) {
+        throw new Error(`An error has occurred: ${response.status}`);
+      }
+
+      const attractions = await response.json();
+      displayAttractions(attractions);
+    } catch (error) {
+      console.error('Error fetching tourist attractions:', error);
+    }
+  }
+
+  // Function to render the list of attractions dynamically
+  function displayAttractions(attractions) {
+    const attractionContainer = document.getElementById('attraction-items');
+
+    // Clear the container before rendering new data
+    attractionContainer.innerHTML = '';
+
+    // Loop through the attractions and create cards for each one
+    attractions.forEach(attraction => {
+      const attractionCard = document.createElement('div');
+      attractionCard.classList.add('attraction-card');
+
+      attractionCard.innerHTML = `
+                    <h3>${attraction.name}</h3>
+                    <p><strong>Location:</strong> ${attraction.location}</p>
+                    <p class="description">${attraction.description}</p>
+                `;
+
+      attractionContainer.appendChild(attractionCard);
+    });
+  }
+
+  // Call the function to fetch and display the attractions on page load
+  document.addEventListener('DOMContentLoaded', fetchTouristAttractions);
+</script>
+</body>
+</html>
