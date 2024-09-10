@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tourist Attraction Finder</title>
+    <title>Update Tourist Attraction</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,8 +56,7 @@
             color: #555;
         }
 
-        /* Style the input field */
-        input[type="text"] {
+        input[type="text"], input[type="number"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -67,12 +66,11 @@
             transition: border-color 0.3s ease;
         }
 
-        input[type="text"]:focus {
+        input[type="text"]:focus, input[type="number"]:focus {
             border-color: #4caf50;
             outline: none;
         }
 
-        /* Style the button */
         button {
             padding: 10px 15px;
             background-color: #4caf50;
@@ -88,7 +86,6 @@
             background-color: #45a049;
         }
 
-        /* Style the result container */
         #result {
             margin-top: 20px;
             padding: 15px;
@@ -107,13 +104,11 @@
             margin-bottom: 8px;
         }
 
-        /* Style error messages */
         #result p[style="color:red;"] {
             color: red;
             font-weight: bold;
         }
 
-        /* Style for mobile responsiveness */
         @media (min-width: 768px) {
             body {
                 max-width: 600px;
@@ -121,6 +116,43 @@
             }
         }
     </style>
+    <script>
+        // Fetch the attraction by its ID
+        async function fetchAttraction() {
+            const id = document.getElementById('attractionId').value;
+            const response = await fetch(`http://localhost:8080/attractions/${id}`);
+
+            if (response.status === 200) {
+                const data = await response.json();
+                document.getElementById('attractionName').value = data.name;
+            } else {
+                alert('Tourist Attraction not found!');
+            }
+        }
+
+        // Update the name of the attraction
+        async function updateAttraction() {
+            const id = document.getElementById('attractionId').value;
+            const newName = document.getElementById('attractionName').value;
+
+            const response = await fetch(`http://localhost:8080/attractions/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: newName
+                }),
+            });
+
+            if (response.status === 200) {
+                const data = await response.json();
+                alert(`Attraction updated successfully! New name: ${data.name}`);
+            } else {
+                alert('Failed to update attraction!');
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -132,54 +164,32 @@
     <a href="#delete-attraction">Delete Attraction - TBD</a>
 </nav>
 
-<main>
-    <h1 style="text-align:center; margin-top: 20px;">Tourist Attraction Finder</h1>
+<div class="container">
+    <h1>Update Tourist Attraction</h1>
 
-    <form id="attractionForm">
-        <label for="attractionName">Enter Tourist Attraction Name:</label>
-        <input type="text" id="attractionName" name="attractionName" placeholder="Enter name...">
-        <button type="button" onclick="fetchAttraction()">Find Attraction</button>
-    </form>
+    <!-- Form to fetch the attraction by ID -->
+    <label for="attractionId">Attraction ID:</label>
+    <input type="number" id="attractionId" name="attractionId" required>
+    <button onclick="fetchAttraction()">Fetch Attraction</button>
 
-    <div id="result">
-        <!-- Attraction details will be displayed here -->
-    </div>
-</main>
+    <br><br>
+
+    <!-- Input to update the name -->
+    <label for="attractionName">Attraction Name:</label>
+    <input type="text" id="attractionName" name="attractionName" required>
+
+    <br><br>
+
+    <!-- Button to submit the updated name -->
+    <button onclick="updateAttraction()">Update Attraction</button>
+
+    <!-- Result container to show updates or errors -->
+    <div id="result"></div>
+</div>
 
 <footer>
-    <p>&copy; 2024 Tourist Attraction Finder. All rights reserved.</p>
+    &copy; 2024 Tourist Attractions. All rights reserved.
 </footer>
-
-<script>
-    function fetchAttraction() {
-        const name = document.getElementById('attractionName').value;
-
-        if (!name) {
-            document.getElementById('result').innerHTML = '<p style="color:red;">Please enter an attraction name!</p>';
-            return;
-        }
-
-        // Simulate fetching attraction data (this would normally be an API call)
-        const attractions = [
-            { name: 'Eiffel Tower', location: 'Paris, France', description: 'An iconic symbol of France.' },
-            { name: 'Statue of Liberty', location: 'New York, USA', description: 'A gift of friendship from France to the United States.' },
-            { name: 'Colosseum', location: 'Rome, Italy', description: 'An ancient amphitheater in the center of the city.' }
-        ];
-
-        const attraction = attractions.find(attraction => attraction.name.toLowerCase() === name.toLowerCase());
-
-        const resultDiv = document.getElementById('result');
-        if (attraction) {
-            resultDiv.innerHTML = `
-                    <h3>${attraction.name}</h3>
-                    <p><strong>Location:</strong> ${attraction.location}</p>
-                    <p>${attraction.description}</p>
-                `;
-        } else {
-            resultDiv.innerHTML = '<p style="color:red;">Attraction not found!</p>';
-        }
-    }
-</script>
 
 </body>
 </html>
