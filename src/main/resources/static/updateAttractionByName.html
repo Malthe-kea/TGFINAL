@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Tourist Attraction</title>
+    <link rel="stylesheet" href="stylesheet.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +18,6 @@
             padding: 1em;
             text-align: center;
         }
-
         nav a {
             color: white;
             text-decoration: none;
@@ -109,12 +109,6 @@
             font-weight: bold;
         }
 
-        @media (min-width: 768px) {
-            body {
-                max-width: 600px;
-                margin: 0 auto;
-            }
-        }
     </style>
     <script>
         // Fetch the attraction by its ID
@@ -161,8 +155,9 @@
     <a href="updateAttractionByName.html">Update Attraction</a>
     <a href="attractions.html">Get A List Of Attractions</a>
     <a href="getAttractionByName.html"> Get Attraction By Name</a>
-    <a href="#delete-attraction">Delete Attraction - TBD</a>
+    <a href="deleteFile.html">Delete Attraction</a>
 </nav>
+
 
 <div class="container">
     <h1>Update Tourist Attraction</h1>
@@ -188,7 +183,7 @@
 </div>
 
 <footer>
-    &copy; 2024 Tourist Attractions. All rights reserved.
+    <p>© 2024 Tourist Guide API</p>
 </footer>
 
 </body>

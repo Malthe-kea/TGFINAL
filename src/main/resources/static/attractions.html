@@ -9,10 +9,10 @@
 <body>
 <nav>
   <a href="Index.html">Home</a>
-  <a href="updateAttractionByName.html">Get Attraction by Name</a>
+  <a href="updateAttractionByName.html">Update Attraction</a>
   <a href="attractions.html">Get A List Of Attractions</a>
-  <a href="#update-attraction">Update Attraction - TBD</a>
-  <a href="#delete-attraction">Delete Attraction - TBD</a>
+  <a href="getAttractionByName.html"> Get Attraction By Name</a>
+  <a href="deleteFile.html">Delete Attraction</a>
 </nav>
 
 <header>
@@ -21,13 +21,10 @@
 
 <main>
   <section id="attractions-list">
-    <h2>Explore the Attractions</h2>
     <div class="attractions-container" id="attraction-items">
       <!-- Attraction cards will be dynamically added here -->
     </div>
   </section>
-  <button> <a href="Index.html"> back </a>
-  </button>
 </main>
 
 <footer>
@@ -63,8 +60,9 @@
 
       attractionCard.innerHTML = `
                     <h3>${attraction.name}</h3>
-                    <p><strong>Location:</strong> ${attraction.location}</p>
+                    <p><strong>ID:</strong> ${attraction.id}</p>
                     <p class="description">${attraction.description}</p>
+                    <p>__________________</p>
                 `;
 
       attractionContainer.appendChild(attractionCard);

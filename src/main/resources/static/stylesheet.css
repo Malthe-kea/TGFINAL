@@ -8,11 +8,13 @@ nav {
     color: white;
     padding: 1em;
     text-align: center;
+    width: 100%;
 }
 nav a {
     color: white;
     text-decoration: none;
     margin: 0 15px;
+    width: 100%;
 }
 footer {
     background-color: #333;
@@ -98,12 +100,4 @@ button:hover {
 #result p[style="color:red;"] {
     color: red;
     font-weight: bold;
-}
-
-/* Style for mobile responsiveness */
-@media (min-width: 768px) {
-    body {
-        max-width: 600px;
-        margin: 0 auto;
-    }
 }

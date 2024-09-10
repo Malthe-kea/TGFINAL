@@ -35,11 +35,15 @@ public class TouristController {
         return new ResponseEntity<>(touristService.addTouristAttraction(touristAttraction),HttpStatus.CREATED);
     }
 
-    @PostMapping("delete/{name}")
-    public ResponseEntity<TouristAttraction> deleteTouristAttractionByName(@PathVariable String name) {
+    @PostMapping("/delete/{name}")
+    public ResponseEntity<String> deleteTouristAttractionByName(@PathVariable String name) {
         TouristAttraction touristAttraction = touristService.getTouristAttractionByName(name);
+        if (touristAttraction == null) {
+            return new ResponseEntity<>("Attraction not found", HttpStatus.NOT_FOUND);
+        }
+
         touristService.deleteTouristAttraction(touristAttraction);
-        return new ResponseEntity<>( touristAttraction, HttpStatus.OK);
+        return new ResponseEntity<>("Deleted attraction: " + name, HttpStatus.OK);
     }
 
     @PostMapping("/{id}")
@@ -50,5 +54,4 @@ public class TouristController {
        }
         return new ResponseEntity<>( updatedTouristAttraction, HttpStatus.OK);
     }
-
 }

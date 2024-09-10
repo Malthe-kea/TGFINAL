@@ -52,11 +52,11 @@ public class TouristRepository {
         }
         return null;
     }
-    public TouristAttraction deleteAttraction(TouristAttraction touristAttraction1) {
-        for (TouristAttraction touristAttraction : attractionArrayList) {
-            if (touristAttraction.getName().equals(touristAttraction1.getName())) {
-                attractionArrayList.remove(touristAttraction);
-                return touristAttraction;
+    public TouristAttraction deleteAttraction(TouristAttraction touristAttraction) {
+        for (TouristAttraction t : attractionArrayList) {
+            if (t.getName().equalsIgnoreCase(touristAttraction.getName())) {
+                attractionArrayList.remove(t);
+                return t;
             }
         }
         return null;
