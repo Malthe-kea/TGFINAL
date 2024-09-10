@@ -29,7 +29,7 @@ public class TouristController {
     public ResponseEntity<TouristAttraction> getTouristAttractionByName(@PathVariable String name) {
         return new ResponseEntity<>(touristService.getTouristAttractionByName(name), HttpStatus.OK);
     }
-//hej
+//hej IGEN
     @PostMapping("/add")
     public ResponseEntity<TouristAttraction> addTouristAttraction(@RequestBody TouristAttraction touristAttraction){
         return new ResponseEntity<>(touristService.addTouristAttraction(touristAttraction),HttpStatus.CREATED);
